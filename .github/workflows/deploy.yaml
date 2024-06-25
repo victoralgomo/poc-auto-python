@@ -1,0 +1,47 @@
+on:
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 0 * * 0'     # crontab.guru
+  workflow_dispatch:
+
+name: Automatização de Relatório e Dashboard
+
+jobs:
+  Deploy:
+
+    runs-on: ubuntu-22.04
+
+    env:
+      RSCONNECT_USER: ${{ secrets.RSCONNECT_USER }}
+      RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
+      RSCONNECT_SECRET: ${{ secrets.RSCONNECT_SECRET }}
+
+    steps:
+      - name: Clonar esse repositório
+        uses: actions/checkout@v3       # github.com/actions/checkout
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar o Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Instalar bibliotecas Python do projeto
+        run: poetry install --no-root
+
+      - name: Instalar o Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Renderização de Relatório Quarto
+        run: |
+          poetry config virtualenvs.prefer-active-python true
+          poetry run quarto render aplicacao/relatorio/relatorio.qmd
+
+      - name: Commit & Push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Deploy de aplicações
