@@ -6,7 +6,7 @@ import plotnine as p9
 
 # Importação de dados
 dados = (
-    pd.read_csv("aplicacao/dashboard/dados_disponibilizados.csv")
+    pd.read_csv("dados_disponibilizados.csv")
     .assign(
         data = lambda x: pd.to_datetime(x.data),
         index = lambda x: x.data
@@ -160,4 +160,4 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 # shiny run aplicacao/dashboard/app.py --reload
-# rsconnect deploy shiny . --title poc-shiny-python
+# poetry run rsconnect deploy shiny aplicacao/dashboard/ --title poc-auto-python
