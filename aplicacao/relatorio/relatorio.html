@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bibliotecas" class="level2">
 <h2 class="anchored" data-anchor-id="bibliotecas">Bibliotecas</h2>
 <p>Primeiro é necessário importar as bibliotecas de Python (e instalar caso não estejam instalados ainda) para usar as funções úteis de coleta, tratamento e visualização de dados:</p>
-<div id="e2567ffa" class="cell" data-execution_count="1">
+<div id="b2557552" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar bibliotecas</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bcb <span class="im">import</span> sgs</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dados" class="level2">
 <h2 class="anchored" data-anchor-id="dados">Dados</h2>
 <p>Em seguida é necessário identificar o código da série temporal desejada no sistema SGS/BCB e utilizar este código para obter os dados com a bibliotecas <code>python-bcb</code>:</p>
-<div id="6bad493c" class="cell" data-execution_count="2">
+<div id="3a6df7c8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coleta de dados</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> sgs.get(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    codes <span class="op">=</span> {<span class="st">"cambio"</span>: <span class="dv">3698</span>},</span>
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Os dados brutos obtidos no SGS/BCB são exibidos abaixo:</p>
-<div id="3f9af0bc" class="cell" data-execution_count="3">
+<div id="10aca05c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dados.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -173,14 +173,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Abaixo criamos uma colunna adicional com a informação do índice da tabela:</p>
-<div id="6e3ec414" class="cell" data-execution_count="4">
+<div id="efc448a7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> dados.assign(data <span class="op">=</span> dados.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualização-de-dados" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-de-dados">Visualização de Dados</h2>
 <p>Por fim, pode ser utilizado um pacote de visualização de dados como o <code>plotnine</code> para gerar um gráfico de linha com a série da taxa de câmbio:</p>
-<div id="231d8c11" class="cell" data-execution_count="5">
+<div id="390a1a94" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de linha</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((p9.ggplot(data <span class="op">=</span> dados) <span class="op">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  p9.aes(x <span class="op">=</span> <span class="st">"data"</span>, y <span class="op">=</span> <span class="st">"cambio"</span>) <span class="op">+</span></span>
@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  p9.theme_light()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2029/4291321332.py:2: FutureWarning: Using print(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().</code></pre>
+<pre><code>/tmp/ipykernel_2097/4291321332.py:2: FutureWarning: Using print(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
