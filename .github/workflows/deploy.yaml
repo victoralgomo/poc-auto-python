@@ -41,6 +41,11 @@ jobs:
           poetry config virtualenvs.prefer-active-python true
           poetry run quarto render aplicacao/relatorio/relatorio.qmd
 
+      - name: Publicação da Dashboard Shiny
+        run: |
+          poetry run rsconnect add --account '${{ secrets.RSCONNECT_USER }}' --name '${{ secrets.RSCONNECT_USER }}' --token '${{ secrets.RSCONNECT_TOKEN }}' --secret '${{ secrets.RSCONNECT_SECRET }}'
+          poetry run rsconnect deploy shiny aplicacao/dashboard/ --title poc-auto-python
+          
       - name: Commit & Push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
